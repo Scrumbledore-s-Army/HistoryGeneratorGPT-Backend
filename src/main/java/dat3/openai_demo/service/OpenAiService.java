@@ -41,7 +41,7 @@ public class OpenAiService {
   public final static String URL = "https://api.openai.com/v1/chat/completions";
   public final static String MODEL = "gpt-3.5-turbo-1106";
   public final static double TEMPERATURE = 1;
-  public final static int MAX_TOKENS = 1500;
+  public final static int MAX_TOKENS = 2500;
   public final static double FREQUENCY_PENALTY = 0.0;
   public final static double PRESENCE_PENALTY = 0.0;
   public final static double TOP_P = 1.0;
@@ -67,6 +67,7 @@ public class OpenAiService {
     requestDto.setPresence_penalty(PRESENCE_PENALTY);
     requestDto.getMessages().add(new ChatCompletionRequest.Message("system", _systemMessage));
     requestDto.getMessages().add(new ChatCompletionRequest.Message("user", userPrompt));
+
 
     ObjectMapper mapper = new ObjectMapper();
     String json = "";
