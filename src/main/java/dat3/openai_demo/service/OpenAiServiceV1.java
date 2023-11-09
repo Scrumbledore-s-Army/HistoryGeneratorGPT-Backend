@@ -55,12 +55,14 @@ public class OpenAiServiceV1 {
     userMessage.put("role", "user");
     userMessage.put("content", userPrompt);
     messages.add(userMessage);
+
     body.put("messages", messages);
     body.put("temperature", TEMPERATURE);
     body.put("max_tokens", MAX_TOKENS);
     body.put("top_p", 1);
     body.put("frequency_penalty", FREQUENCY_PENALTY);
     body.put("presence_penalty", PRESENCE_PENALTY);
+
     ObjectMapper mapper = new ObjectMapper();
     String json = "";
 
