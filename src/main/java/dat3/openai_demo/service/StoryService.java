@@ -22,7 +22,7 @@ import java.util.Map;
 public class StoryService {
 
 
-    @Value("${IMAGE_API_KEY}")
+    @Value("${api.image-api-key}")
     private String API_KEY;
 
     private final static String url = "http://api.novita.ai/v2/txt2img";
@@ -73,8 +73,9 @@ public class StoryService {
                     .bodyToMono(ImageGeneratorResponse.class)
                     .block();
 
-            String responseMsg = response.getData();
-            return new ImageGeneratorResponse(responseMsg);
+            assert response != null;
+
+            return new ImageGeneratorResponse(response.getData());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -85,7 +86,8 @@ public class StoryService {
     public String getImage(String prompt){
         WebClient webClient = WebClient.create();
         ImageGeneratorResponse imageGeneratorResponse = getTaskId(prompt);
-        String taskId = imageGeneratorResponse.getData();
+        String taskId = imageGeneratorResponse.getData().getTask_id();
+        System.out.println(taskId);
         try {
             Thread.sleep(2000);
             ImageResponse response = webClient.get()
@@ -94,9 +96,20 @@ public class StoryService {
                     .retrieve()
                     .bodyToMono(ImageResponse.class)
                     .block();
-
-            return response.getData().getImgs().get(0);
-        } catch (URISyntaxException | InterruptedException e) {
+            while(response.getData().getProgress() == 0){
+                Thread.sleep(1000);
+                response = webClient.get()
+                        .uri(new URI(image_url+taskId))
+                        .header("Authorization", "Bearer " + API_KEY)
+                        .retrieve()
+                        .bodyToMono(ImageResponse.class)
+                        .block();
+            }
+            System.out.println(response.getData().toString());
+            return response.getData().getImgs()[0];
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 

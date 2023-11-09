@@ -3,22 +3,25 @@ package dat3.openai_demo.dtos;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class ImageGeneratorResponse {
     private final int code = 0;
     private final String msg = "";
-    private String data;
+    private Data data;
 
-    public ImageGeneratorResponse(String data) {
+    public ImageGeneratorResponse(Data data) {
         this.data = data;
     }
 
     @Getter
     @Setter
     @NoArgsConstructor
-    private static class Data{
-        private int task_id;
+    public static class Data{
+        private String task_id;
     }
 }
