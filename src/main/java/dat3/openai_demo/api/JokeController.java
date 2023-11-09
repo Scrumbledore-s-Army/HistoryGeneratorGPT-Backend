@@ -23,8 +23,7 @@ public class JokeController {
             "Kapitel 5 skal afslutte historien.\n" +
             "\n" +
             "Under hvert kapitel lav et engelsk text-to-image prompt så der kan generes et billed der passer til kapitlet. \n" +
-            "Brug ikke egenavne fra historien, men bare forklar billedet. Formater historien sådan her: [CHAPTER NUMBER: ...] [CHAPTER-TITLE: ...] [CHAPTER-TEXT: ...] [CHAPTER-IMAGE-PROMPT: ...]";
-
+            "Brug ikke egenavne fra historien, men bare forklar billedet. Formater historien sådan her: [CHAPTER-NUMBER: ...] [CHAPTER-TITLE: ...] [CHAPTER-TEXT: ...] [CHAPTER-IMAGE-PROMPT: ...]";
     public JokeController(OpenAiService service) {
         this.service = service;
     }
