@@ -40,7 +40,7 @@ public class OpenAiService {
 
   public final static String URL = "https://api.openai.com/v1/chat/completions";
   public final static String MODEL = "gpt-3.5-turbo-1106";
-  public final static double TEMPERATURE = 1;
+  public final static double TEMPERATURE = 0.6;
   public final static int MAX_TOKENS = 2500;
   public final static double FREQUENCY_PENALTY = 0.0;
   public final static double PRESENCE_PENALTY = 0.0;

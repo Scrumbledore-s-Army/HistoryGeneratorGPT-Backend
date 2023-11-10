@@ -19,8 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @CrossOrigin(origins = "*")
 @RequestMapping("api/image")
 public class ImageController {
-    private final int BUCKET_CAPACITY = 3;
-    private final int REFILL_AMOUNT = 3;
+    private final int BUCKET_CAPACITY = 20;
+    private final int REFILL_AMOUNT = 20;
     private final int REFILL_TIME = 2;
     private StoryService storyService;
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();

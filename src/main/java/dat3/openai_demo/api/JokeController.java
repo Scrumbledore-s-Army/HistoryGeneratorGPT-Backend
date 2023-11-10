@@ -23,14 +23,23 @@ public class JokeController {
             "Kapitel 5 skal afslutte historien.\n" +
             "\n" +
             "Under hvert kapitel lav et engelsk text-to-image prompt så der kan generes et billed der passer til kapitlet. \n" +
-            "Brug ikke egenavne fra historien, men bare forklar billedet. Formater historien sådan her: [CHAPTER-NUMBER: ...] [CHAPTER-TITLE: ...] [CHAPTER-TEXT: ...] [CHAPTER-IMAGE-PROMPT: ...]";
+            "Brug ikke egenavne fra historien, men bare forklar billedet. " +
+            "Formater historien sådan her: [CHAPTER-NUMBER: chapter number here] " +
+            "[CHAPTER-TITLE: chapter title here] [CHAPTER-TEXT: chapter text here(must be in danish)] " +
+            "[CHAPTER-IMAGE-PROMPT: chapter image prompt here(must be in english)" +
+            "(make detailed descriptions of each character in" +
+            " the image as well as detailed descriptions of the environment. In every image prompt," +
+            "eachs characters hair color, skin tone, and gender, height, " +
+            "every character is healthy and strong. " +
+            "Remember, the image generator lacks story context, so include thorough descriptions " +
+            "of the main characters in each prompt.]";
     public JokeController(OpenAiService service) {
         this.service = service;
     }
 
     @GetMapping
     public MyResponse getJoke(@RequestParam String about) {
-
+        System.out.println(about);
         return service.makeRequest(about, SYSTEM_MESSAGE);
     }
 }
