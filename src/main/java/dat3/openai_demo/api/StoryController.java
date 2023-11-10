@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/story")
 @CrossOrigin(origins = "*")
-public class JokeController {
+public class StoryController {
 
     private OpenAiService service;
     final static String SYSTEM_MESSAGE = "Du er en dygtig forfatter af godnathistorier til børn. Du skriver personlige historier baseret på børns interesser og de vigtige personer i deres liv, som venner og forældre. Dine historier er af høj kvalitet og skrives på dansk. Start historien midt i begivenhederne, hvor der sker noget spændende, og skab en uundgåelig vendepunkt og en fantastisk afslutning, der indeholder en vigtig lære for barnet. Brug følgende oplysninger om barnet til at opbygge historien:\n" +
@@ -33,7 +33,7 @@ public class JokeController {
             "every character is healthy and strong. " +
             "Remember, the image generator lacks story context, so include thorough descriptions " +
             "of the main characters in each prompt.]";
-    public JokeController(OpenAiService service) {
+    public StoryController(OpenAiService service) {
         this.service = service;
     }
 
